@@ -1,4 +1,4 @@
-package bing.server;
+package com.edu.service;
 
 import javax.annotation.Resource;
 
@@ -6,7 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
-import bing.server.IHelloService;
+import com.edu.service.IHelloService;
 
 /**
  * <p>

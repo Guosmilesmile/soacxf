@@ -13,6 +13,6 @@
      -->
     
 
-    <jaxws:endpoint id="helloService" implementor="bing.server.HelloServiceImpl" address="/helloService" />
-        
+    <jaxws:endpoint id="helloService" implementor="com.edu.service.HelloServiceImpl" address="/helloService" />
+    <jaxws:endpoint id="productService" implementor="com.edu.service.ProductServiceImpl" address="/productService" />
 </beans>

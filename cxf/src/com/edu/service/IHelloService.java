@@ -1,4 +1,4 @@
-package bing.server;
+package com.edu.service;
 
 import javax.jws.WebService;
 

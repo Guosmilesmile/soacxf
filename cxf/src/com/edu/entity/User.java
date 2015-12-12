@@ -1,4 +1,4 @@
-package com.hsy.pojo;
+package com.edu.entity;
 
 public class User {
 	private String name;

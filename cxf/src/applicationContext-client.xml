@@ -16,7 +16,7 @@
     <bean id="client" class="bing.server.IHelloService" factory-bean="clientFactory" factory-method="create" />
 
     <bean id="clientFactory" class="org.apache.cxf.jaxws.JaxWsProxyFactoryBean">
-        <property name="serviceClass" value="bing.server.IHelloService" />
+        <property name="serviceClass" value="com.edu.service.IHelloService" />
         <property name="address" value="http://localhost:8080/cxf/ws/helloService" />
     </bean>
 </beans>

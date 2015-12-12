@@ -1,4 +1,4 @@
-package bing.server;
+package com.edu.service;
 
 import javax.jws.WebService;
 
@@ -11,7 +11,7 @@ import javax.jws.WebService;
  * @date 2012-7-6
  * @version 1.0
  */
-@WebService(endpointInterface = "bing.server.IHelloService", serviceName = "HelloService")
+@WebService(endpointInterface = "com.edu.service.IHelloService")
 public class HelloServiceImpl implements IHelloService {
 
     @Override
