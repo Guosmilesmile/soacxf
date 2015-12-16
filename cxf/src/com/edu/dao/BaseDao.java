@@ -1,4 +1,4 @@
-package com.edu.util;
+package com.edu.dao;
 
 import java.util.Map;
 
