@@ -1,7 +1,11 @@
 package com.edu.entity;
 
 import java.util.Date;
-
+/**
+ * 发票类型
+ * @author Gy
+ *
+ */
 public class InvoiceType {
 	private String invoiceId;
 	private String customername;

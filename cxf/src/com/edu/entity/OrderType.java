@@ -2,6 +2,11 @@ package com.edu.entity;
 
 import java.util.Date;
 
+/**
+ * 订单
+ * @author Gy
+ *
+ */
 public class OrderType {
 	private String orderId;
 	private CustomerType customer;

@@ -3,24 +3,24 @@ package com.edu.service;
 import javax.jws.WebService;
 
 import com.edu.entity.OrderType;
-
 @WebService
 public interface ICustomerService {
 	/**
-	 * 订单取消
-	 * @param order
-	 * @param reason
+	 * 发送订单
 	 * @return
 	 */
-	public int OrderCancelledMessage(OrderType order,String reason);
+	public int CustomerSendOrder(OrderType orderType);
 	
 	/**
-	 * 订单接收
-	 * @param order
-	 * @param salerCreditCardId
+	 * 发送预存款申请
 	 * @return
 	 */
-	public int OrderAcceptedMessage(OrderType order,String salerCreditCardId);
+	public int CustomerSendPreDeposit(int money);
 	
-	public int DeliveryStorage();
+	/**
+	 * 
+	 * @param money
+	 * @return
+	 */
+	public int CustomerSendDeposit(int money);
 }
