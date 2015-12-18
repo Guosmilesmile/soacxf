@@ -11,16 +11,6 @@ public interface ICustomerService {
 	 */
 	public int CustomerSendOrder(OrderType orderType);
 	
-	/**
-	 * 发送预存款申请
-	 * @return
-	 */
-	public int CustomerSendPreDeposit(int money);
 	
-	/**
-	 * 
-	 * @param money
-	 * @return
-	 */
-	public int CustomerSendDeposit(int money);
+	public int OrderCancelledCallback();
 }
