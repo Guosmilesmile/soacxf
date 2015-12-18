@@ -13,7 +13,7 @@
      -->
     
 
-    <jaxws:endpoint id="helloService" implementor="com.edu.service.HelloServiceImpl" address="/helloService" />
-    <jaxws:endpoint id="productService" implementor="com.edu.service.ProductServiceImpl" address="/productService" />
+    <!-- <jaxws:endpoint id="helloService" implementor="com.edu.service.HelloServiceImpl" address="/helloService" /> -->
+    <jaxws:endpoint id="customerService" implementor="com.edu.service.CustomerServiceImpl" address="/customerService" />
     <!-- <jaxws:endpoint id="custoemrService" implementor="com.edu.service.CustomerServiceImpl" address="/customerService" /> -->
 </beans>
