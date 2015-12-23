@@ -12,8 +12,7 @@ public class BankServiceImpl implements IBankService {
 
 	@Override
 	public int BankPreDeposit(preDepositRequestMessage preDepositRequestMessage) {
-		// TODO Auto-generated method stub
-		return 0;
+		return 1;
 	}
 
 	@Override

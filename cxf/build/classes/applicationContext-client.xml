@@ -13,10 +13,16 @@
      -->
     
 
-    <bean id="client" class="com.edu.service.IHelloService" factory-bean="clientFactory" factory-method="create" />
+    <!-- <bean id="client" class="com.edu.service.IHelloService" factory-bean="clientFactory" factory-method="create" />
 
     <bean id="clientFactory" class="org.apache.cxf.jaxws.JaxWsProxyFactoryBean">
         <property name="serviceClass" value="com.edu.service.IHelloService" />
         <property name="address" value="http://localhost:8080/cxf/ws/helloService" />
+    </bean> -->
+    <bean id="bank" class="com.edu.service.IBankService" factory-bean="clientFactory" factory-method="create" />
+
+    <bean id="clientFactory" class="org.apache.cxf.jaxws.JaxWsProxyFactoryBean">
+        <property name="serviceClass" value="com.edu.service.IBankService" />
+        <property name="address" value="http://localhost:8080/cxfbank/ws/bankService" />
     </bean>
 </beans>
