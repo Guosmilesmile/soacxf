@@ -20,14 +20,14 @@ import com.edu.util.FastJsonTool;
 /**
  * Servlet implementation class GetNoPayOrderServlet
  */
-@WebServlet("/GetPayOrderServlet")
-public class GetPayOrderServlet extends HttpServlet {
+@WebServlet("/GetmidPayOrderServlet")
+public class GetmidPayOrderServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public GetPayOrderServlet() {
+    public GetmidPayOrderServlet() {
         super();
     }
 
@@ -47,7 +47,7 @@ public class GetPayOrderServlet extends HttpServlet {
 		response.setContentType("text/html; charset=UTF-8");
 		String customerid = request.getParameter("id");
 		ICustomerTypeDao customerTypeDao = new CustomerTypeDaoImpl();
-		List<OrderType> orderTypes = customerTypeDao.getOrderTypes(2,Integer.parseInt(customerid));
+		List<OrderType> orderTypes = customerTypeDao.getOrderTypes(1,Integer.parseInt(customerid));
 		PrintWriter writer = response.getWriter();
 		writer.write(FastJsonTool.createJsonString(orderTypes));
 		writer.close();

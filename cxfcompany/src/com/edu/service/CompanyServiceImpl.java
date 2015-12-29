@@ -31,6 +31,7 @@ public class CompanyServiceImpl implements ICompanySerivce{
 			orderType.setProduct(productType);
 			orderType.setTimeStamp(new Date());
 			orderType.setIspay(0);
+			orderType.setMoney(newOrderMessage.getOrderType().getMoney());
 			orderDao.addOrder(orderType );
 			return 1;
 		}
@@ -43,6 +44,13 @@ public class CompanyServiceImpl implements ICompanySerivce{
 		orderDao.UpdateOrder(orderid);
 		return 1;
 	}
+
+
+	@Override
+	public void updateamount(int orderid,int amount) {
+		orderDao.updateproductamont(orderid, amount);
+	}
+
 
 	
 	

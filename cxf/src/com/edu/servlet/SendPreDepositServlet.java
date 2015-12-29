@@ -17,6 +17,7 @@ import com.edu.daoimpl.CustomerTypeDaoImpl;
 import com.edu.entity.CustomerType;
 import com.edu.message.preDepositRequestMessage;
 import com.edu.service.IBankService;
+import com.edu.service.ICompanySerivce;
 
 /**
  * Servlet implementation class SendPreDepositServlet
@@ -49,15 +50,18 @@ public class SendPreDepositServlet extends HttpServlet {
 		response.setContentType("text/html; charset=UTF-8");
 		String id = request.getParameter("id");
 		String salerCreditCardId = request.getParameter("toid");
+		String orderid = request.getParameter("orderid");
 		ApplicationContext context = new ClassPathXmlApplicationContext("applicationContext-client.xml");
         IBankService bankService = (IBankService) context.getBean("bank");
         ICustomerTypeDao customerTypeDao= new CustomerTypeDaoImpl();
         CustomerType customer = customerTypeDao.getCustomerTypeByid(Integer.parseInt(id));
 		String myCreditCardId = customer.getId()+"";
-		Double funds = Double.parseDouble(request.getParameter("funds"));
-		preDepositRequestMessage preDepositRequestMessage = new preDepositRequestMessage(customer, myCreditCardId, funds, salerCreditCardId);
+		//Double funds = Double.parseDouble(request.getParameter("funds"));
+		preDepositRequestMessage preDepositRequestMessage = new preDepositRequestMessage(customer, myCreditCardId, 0.0, salerCreditCardId,Integer.parseInt(orderid));
 		int bankPreDeposit = -2;
 		bankPreDeposit = bankService.BankPreDeposit(preDepositRequestMessage );
+		
+       
 		PrintWriter writer = response.getWriter();
 		if(bankPreDeposit==-2){
 			writer.write("连接失败，请重新连接");

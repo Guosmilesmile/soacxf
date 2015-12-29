@@ -129,17 +129,16 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
       <h1><a href="index.html"><img alt="" src=""></a></h1>
       <nav>
         <ul class="sf-menu">
-          <li><a  href="1generateOrder.html">发起订单</a></li>
-          <li class="active"><a href=".html">待审核订单</a> </li>
-          <li><a href="index-2.html">制作中订单</a>
+          <li class="active"><a  href="1generateOrder.jsp">发起订单</a></li>
+          <li ><a href="3viewDeWaitOrder.jsp">未预转账订单</a> </li>
+          <li><a href="2viewMyWaitOrder.jsp">未转账订单</a></li>
+          <li><a href="4viewMyOngoingOrder.jsp">成功订单</a></li>
             <ul>
               <li><a href="#">dolores et</a></li>
               <li><a href="#">lorem ipsum dolo </a>
               <li><a href="#">sanctus est</a></li>
             </ul>
           </li>
- <li><a href="index-3.html">转账申请</a> </li>
-          <li><a href="index-3.html">退出</a> </li>
          
         </ul>
       </nav>

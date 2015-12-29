@@ -3,8 +3,6 @@ package com.edu.service;
 import javax.jws.WebService;
 
 import com.edu.message.newOrderMessage;
-import com.edu.message.preDepositSuccessMessage;
-import com.edu.message.prepareDeliverableResultMessage;
 
 @WebService
 public interface ICompanySerivce {
@@ -19,7 +17,10 @@ public interface ICompanySerivce {
 	 * @return
 	 */
 	public int preTransCallback(Integer orderid);
-	
-	
-	
+	/**
+	 * 修改库存
+	 * @param id
+	 * @param amount
+	 */
+	public void updateamount(int orderid,int amount);
 }

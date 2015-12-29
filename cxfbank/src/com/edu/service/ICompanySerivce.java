@@ -17,7 +17,10 @@ public interface ICompanySerivce {
 	 * @return
 	 */
 	public int preTransCallback(Integer orderid);
-	
-	
-	
+	/**
+	 * 修改库存
+	 * @param id
+	 * @param amount
+	 */
+	public void updateamount(int orderid,int amount);
 }

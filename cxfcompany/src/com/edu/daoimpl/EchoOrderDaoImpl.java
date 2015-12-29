@@ -85,12 +85,12 @@ public class EchoOrderDaoImpl extends BaseDaoImpl<OrderType> implements EchoOrde
 		ResultSet resultSet  = null;
 		double money = 0;
 		try {
-			String sql = "select p.cost, o.amount from o_order o, p_product p where o.productid = p.id and o.id="+order_id;
+			String sql = "select money from o_order o where o.id = "+order_id;
 			openConnection = DBUtil.openConnection();
 			prepareStatement = openConnection.prepareStatement(sql);
 			resultSet = prepareStatement.executeQuery();
 			while(resultSet.next()){
-				money = resultSet.getInt(1) * resultSet.getDouble(2);
+				money = resultSet.getInt(1);
 			}
 			return money;
 		} catch (Exception e) {

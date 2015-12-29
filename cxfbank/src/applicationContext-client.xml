@@ -20,4 +20,6 @@
         <property name="serviceClass" value="com.edu.service.ICompanySerivce" />
         <property name="address" value="http://localhost:8080/cxfcompany/ws/companyService" />
     </bean>
+    
+    
 </beans>

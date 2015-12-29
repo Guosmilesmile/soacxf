@@ -42,7 +42,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	}
   function getunpayorder(){
 	  $.ajax({
-		  url:'<%=basePath%>GetmidPayOrderServlet',
+		  url:'<%=basePath%>GetNoPayOrderServlet',
 		  data:{id:'1'},
 		  success:function(data){
 			  var data = eval("("+data+")");
@@ -62,7 +62,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 			          +"<div id=\"d1\" >"
 			          +"<div class=\"form-txt\">amount:"+data[i].amount+"</div>"
 			          +"<label class=\"name\">"
-			          +"</label> <a href=\"#\" class=\"btn\" id='send"+data[i].orderId+"'>转账申请</a>"
+			          +"</label> <a href=\"#\" class=\"btn\" id='send"+data[i].orderId+"'>预转账申请</a>"
 			          +"<div class=\"clear\"></div>"
 			          +"</div>"
 			          +"</div>"
@@ -82,8 +82,8 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
   }
   function sendtrans(id){
 	  $.ajax({
-		  url:'<%=basePath%>SendTransServlet',
-		  data:{id:'1',toid:'2',orderid:id},
+		  url:'<%=basePath%>SendPreDepositServlet',
+		  data:{id:'1',orderid:id,toid:'2',},
 		  success:function(data){
 			  alert(data);
 			  location.reload();
@@ -109,9 +109,9 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
       <h1><a href="index.html"><img alt="" src=""></a></h1>
       <nav>
         <ul class="sf-menu">
-           <li><a  href="1generateOrder.jsp">发起订单</a></li>
-          <li ><a href="3viewDeWaitOrder.jsp">未预转账订单</a> </li>
-          <li class="active"><a href="2viewMyWaitOrder.jsp">未转账订单</a></li>
+          <li><a  href="1generateOrder.jsp">发起订单</a></li>
+          <li class="active"><a href="3viewDeWaitOrder.jsp">未预转账订单</a> </li>
+          <li><a href="2viewMyWaitOrder.jsp">未转账订单</a></li>
           <li><a href="4viewMyOngoingOrder.jsp">成功订单</a></li>
             <ul>
               <li><a href="#">dolores et</a></li>
@@ -135,11 +135,11 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 
 
       <div class="padd-1">
-        <h3>我的未付款订单</h3>
+        <h3>我的未预转账订单</h3>
       </div>
       <ul class="list-teachers" id='list'>
 
-       <!--  <li>
+        <!-- <li>
           <figure class="box-img"><img src="images/page2-img2.jpg " alt="" /></figure>
           <div class="overflow">
             <h4>name</h4>

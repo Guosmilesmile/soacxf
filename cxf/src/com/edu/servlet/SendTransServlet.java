@@ -46,13 +46,15 @@ public class SendTransServlet extends HttpServlet {
 		response.setCharacterEncoding("UTF-8");
 		response.setContentType("text/html; charset=UTF-8");
 		ApplicationContext context = new ClassPathXmlApplicationContext("applicationContext-client.xml");
+		String id = request.getParameter("id");
+		String toid = request.getParameter("toid");
 		String orderid = request.getParameter("orderid");
         IBankService bankService = (IBankService) context.getBean("bank");
         transferFundsMessage transferFundsMessage = new transferFundsMessage();
         CustomerType from  =new CustomerType();
-        from.setId(1);
+        from.setId(Integer.parseInt(id) );
         CustomerType to  =new CustomerType();
-        to.setId(2);
+        to.setId(Integer.parseInt(toid ));
         transferFundsMessage.setOrderid(Integer.parseInt(orderid));
         transferFundsMessage.setCustomerType(from);
         transferFundsMessage.setReceiverCustomerType(to);

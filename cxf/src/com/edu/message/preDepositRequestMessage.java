@@ -10,14 +10,26 @@ public class preDepositRequestMessage {
 	private String myCreditCardId;//卡号
 	private Double funds;//申请金额
 	private String salerCreditCardId;//接受者的卡号
+	private Integer orderid;
 	public preDepositRequestMessage(CustomerType customer,
-			String myCreditCardId, Double funds, String salerCreditCardId) {
+			String myCreditCardId, Double funds, String salerCreditCardId,
+			Integer orderid) {
 		super();
 		this.customer = customer;
 		this.myCreditCardId = myCreditCardId;
 		this.funds = funds;
 		this.salerCreditCardId = salerCreditCardId;
+		this.orderid = orderid;
 	}
+	
+	public Integer getOrderid() {
+		return orderid;
+	}
+
+	public void setOrderid(Integer orderid) {
+		this.orderid = orderid;
+	}
+
 	public preDepositRequestMessage() {
 		super();
 	}

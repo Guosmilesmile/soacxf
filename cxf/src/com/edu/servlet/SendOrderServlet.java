@@ -53,6 +53,7 @@ public class SendOrderServlet extends HttpServlet {
 		String amount = request.getParameter("amount");
 		String productid = request.getParameter("productid");
 		String money = request.getParameter("money");
+		System.out.println(money);
 		ApplicationContext context = new ClassPathXmlApplicationContext("applicationContext-client.xml");
 	    ICompanySerivce companySerivce =   (ICompanySerivce) context.getBean("company");
 		OrderType orderType = new OrderType();

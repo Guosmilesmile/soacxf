@@ -47,15 +47,16 @@ public class OrderDaoImpl implements IOrderDao{
 	}
 	
 	@Override
-	public boolean UpdateOrder(Integer id) {
+	public boolean UpdateOrder(Integer id,int ispay) {
 		Connection openConnection = null ;
 		PreparedStatement prepareStatement = null;
 		try {
-			String sql = "update  o_order set  ispay = 1 where id=?";
+			String sql = "update  o_order set  ispay = ? where id=?";
 			openConnection = DBUtil.openConnection();
 			openConnection.setAutoCommit(false);
 			prepareStatement = openConnection.prepareStatement(sql);
-			prepareStatement.setInt(1, id);
+			prepareStatement.setInt(1, ispay);
+			prepareStatement.setInt(2, id);
 			prepareStatement.execute();
 			return true;
 		} catch (Exception e) {
@@ -76,37 +77,5 @@ public class OrderDaoImpl implements IOrderDao{
 			
 		}
 		return false;
-	}
-
-	@Override
-	public void updateproductamont(int orderid,int amount) {
-		Connection openConnection = null ;
-		PreparedStatement prepareStatement = null;
-		try {
-			String sql = "update p_product set sku=sku-? where id = (select productid from o_order where id=?)";
-			openConnection = DBUtil.openConnection();
-			openConnection.setAutoCommit(false);
-			prepareStatement = openConnection.prepareStatement(sql);
-			prepareStatement.setInt(1, amount);
-			prepareStatement.setInt(2, orderid);
-			prepareStatement.execute();
-		} catch (Exception e) {
-			try {
-				openConnection.rollback();
-			} catch (SQLException e1) {
-				e1.printStackTrace();
-			}
-			e.printStackTrace();
-		}finally{
-			try {
-				prepareStatement.close();
-				openConnection.commit();
-				openConnection.close();
-			} catch (Exception e) {
-				e.printStackTrace();
-			}
-			
-		}
-		
 	}
 }

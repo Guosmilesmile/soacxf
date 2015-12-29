@@ -15,8 +15,6 @@ public interface IOrderDao {
 	 * @param id
 	 * @return
 	 */
-	public boolean UpdateOrder(Integer id);
+	public boolean UpdateOrder(Integer id,int ispay);
 	
-	
-	public void updateproductamont(int orderid,int amount);
 }

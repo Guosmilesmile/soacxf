@@ -55,7 +55,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 			          +"<figure class=\"box-img\"><img src=\"images/page2-img2.jpg \"/></figure>"
 			          +"<div class=\"overflow\">"
 			          +"<h4>name</h4>"
-			          +"<h2>status</h2>"
+			          +"<h2>id:"+productid+"</h2>"
 			          +"<div> amount:"+data[i].amount+" </div> "
 			          +"<div> cost: "+data[i].money+"</div> "
 			          +"<div> time: "+new Date(data[i].timeStamp).toString()+"</div> "
@@ -86,9 +86,10 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
       <h1><a href="index.html"><img alt="" src=""></a></h1>
       <nav>
         <ul class="sf-menu">
-          <li><a  href="/cfx/1generateOrder.jsp">发起订单</a></li>
-          <li ><a href="/cfx/2viewMyWaitOrder.jsp">未付款订单</a> </li>
-          <li class="active"><a href="/cfx/4viewMyOngoingOrder.jsp">已付款订单</a></li>
+           <li><a  href="1generateOrder.jsp">发起订单</a></li>
+          <li ><a href="3viewDeWaitOrder.jsp">未预转账订单</a> </li>
+          <li><a href="2viewMyWaitOrder.jsp">未转账订单</a></li>
+          <li class="active"><a href="4viewMyOngoingOrder.jsp">成功订单</a></li>
          
         </ul>
       </nav>
@@ -109,7 +110,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
       <ul class="list-teachers" id="list">
 
 
-                <li>
+                <!-- <li>
           <figure class="box-img"><img src="images/page2-img2.jpg " alt="" /></figure>
           <div class="overflow">
             <h4>name</h4>
@@ -120,7 +121,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
             <div> time: </div> 
             <a href="#" class="btn">接收</a><a href="#" class="btn">转账</a> </div>
           <div class="clear"></div>
-        </li>
+        </li> -->
        
       </ul>
     </article>
