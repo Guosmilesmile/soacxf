@@ -183,19 +183,19 @@
     			isPay:1
     		},
     		success:function(data){
+    			alert(data);
     			var list = eval(data);
-    			alert(list.length);
     			var html = "";
     			for(var i=0; i<list.length; i++){
-    				var order = list[0];
+    				var order = list[i];
     				html +="<tr>";
     				html +="<td>"+order.orderId+"</td>";
-    				html +="<td>"+order.customername+"</td>";
-    				html +="<td>"+order.productname+"</td>";
+    				html +="<td>"+order.custommerName+"</td>";
+    				html +="<td>"+order.productName+"</td>";
     				html +="<td>"+order.productManufacture+"</td>";
     				html +="<td>"+order.cost+"</td>";
     		    }
-    			document.getElementById('orderList').innerHtml = html;
+    			$('#orderList').html(html);;
     		}
     	});
     });
