@@ -1,11 +1,13 @@
 package com.edu.service;
 
+import javax.jws.WebService;
+
 import com.edu.dao.IProductDao;
 import com.edu.daoimpl.ProductTypeDaoImpl;
 import com.edu.entity.ProductType;
 import com.edu.message.newOrderMessage;
 import com.edu.message.preDepositSuccessMessage;
-
+@WebService(endpointInterface = "com.edu.service.ICompanySerivce")
 public class CompanyServiceImpl implements ICompanySerivce{
 	IProductDao productDao = new ProductTypeDaoImpl();
 	@Override
