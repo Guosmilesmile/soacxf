@@ -35,6 +35,45 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
          <link href='http://fonts.googleapis.com/css?family=PT+Serif+Caption:400italic' rel='stylesheet' type='text/css'>
        <link href='http://fonts.googleapis.com/css?family=PT+Serif+Caption:400' rel='stylesheet' type='text/css'>
 	<![endif]-->
+	 <script>
+  function Visible(){
+	var ui =document.getElementById("d1");
+	ui.style.visibility="visible";
+}
+  function getunpayorder(){
+	  $.ajax({
+		  url:'<%=basePath%>GetPayOrderServlet',
+		  data:{id:'1'},
+		  success:function(data){
+			  var data = eval("("+data+")");
+			  var body = "";
+			  if(data.length>0){
+				  for(var i=0;i<data.length;i++){
+					  var productid = data[i].product.id;
+					  var content = "";
+					  content+="<li>"
+			          +"<figure class=\"box-img\"><img src=\"images/page2-img2.jpg \"/></figure>"
+			          +"<div class=\"overflow\">"
+			          +"<h4>name</h4>"
+			          +"<h2>status</h2>"
+			          +"<div> amount:"+data[i].amount+" </div> "
+			          +"<div> cost: "+data[i].money+"</div> "
+			          +"<div> time: "+new Date(data[i].timeStamp).toString()+"</div> "
+			          + "<a href=\"#\" class=\"btn\">接收</a><a href=\"#\" class=\"btn\">转账</a> </div>";
+			          +"<div class=\"clear\"></div>"
+			          +"</li>";
+			          body+=content;
+				  }
+				 $('#list').html(body);
+			  }
+		  }
+	  });
+  }
+  $(document).ready(function(){
+	  getunpayorder();
+  });
+  </script>
+	
 
 </head>
 <body>
@@ -74,7 +113,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
       <div class="padd-1">
         <h3>我的制作中订单</h3>
       </div>
-      <ul class="list-teachers">
+      <ul class="list-teachers" id="list">
 
 
                 <li>
