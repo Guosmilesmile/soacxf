@@ -47,14 +47,17 @@ public class BalanceDaoImpl extends BaseDaoImpl<BalanceType> implements IBalance
 		Connection openConnection = null ;
 		PreparedStatement prepareStatement = null;
 		try {
-			String sql = "update b_balance set prebalance=prebalance+? balance=balance-? and where id=?";
+			String sql = "update b_balance set prebalance=prebalance+?,balance=balance-?  where customerid=?";
+			System.out.println(sql);
 			openConnection = DBUtil.openConnection();
+			openConnection.setAutoCommit(false);
 			prepareStatement = openConnection.prepareStatement(sql);
 			prepareStatement.setDouble(1, funds);
 			prepareStatement.setDouble(2, funds);
 			prepareStatement.setInt(3, customerid);
-			boolean execute = prepareStatement.execute();
-			return execute;
+			prepareStatement.execute();
+			
+			return true;
 		} catch (Exception e) {
 			try {
 				openConnection.rollback();
@@ -65,6 +68,7 @@ public class BalanceDaoImpl extends BaseDaoImpl<BalanceType> implements IBalance
 		}finally{
 			try {
 				prepareStatement.close();
+				openConnection.commit();
 				openConnection.close();
 			} catch (Exception e) {
 				e.printStackTrace();
@@ -81,11 +85,12 @@ public class BalanceDaoImpl extends BaseDaoImpl<BalanceType> implements IBalance
 		try {
 			String sql = "update b_balance set balance=balance+? where id=?";
 			openConnection = DBUtil.openConnection();
+			openConnection.setAutoCommit(false);
 			prepareStatement = openConnection.prepareStatement(sql);
 			prepareStatement.setDouble(1, funds);
 			prepareStatement.setInt(2, customerid);
-			boolean execute = prepareStatement.execute();
-			return execute;
+			prepareStatement.execute();
+			return true;
 		} catch (Exception e) {
 			try {
 				openConnection.rollback();
@@ -96,6 +101,7 @@ public class BalanceDaoImpl extends BaseDaoImpl<BalanceType> implements IBalance
 		}finally{
 			try {
 				prepareStatement.close();
+				openConnection.commit();
 				openConnection.close();
 			} catch (Exception e) {
 				e.printStackTrace();
@@ -113,16 +119,17 @@ public class BalanceDaoImpl extends BaseDaoImpl<BalanceType> implements IBalance
 		try {
 			String sql = "update b_balance set prebalance=prebalance-? where id=?";
 			openConnection = DBUtil.openConnection();
+			openConnection.setAutoCommit(false);
 			prepareStatement = openConnection.prepareStatement(sql);
 			prepareStatement.setDouble(1, funds);
 			prepareStatement.setInt(2, customerid);
-			boolean execute = prepareStatement.execute();
+			prepareStatement.execute();
 			sql = "update b_balance set balance=balance+? where id=?";
 			prepareStatement = openConnection.prepareStatement(sql);
 			prepareStatement.setDouble(1, funds);
 			prepareStatement.setInt(2, receiverid);
-			execute = prepareStatement.execute();
-			return execute;
+			prepareStatement.execute();
+			return true;
 		} catch (Exception e) {
 			try {
 				openConnection.rollback();
@@ -133,6 +140,7 @@ public class BalanceDaoImpl extends BaseDaoImpl<BalanceType> implements IBalance
 		}finally{
 			try {
 				prepareStatement.close();
+				openConnection.commit();
 				openConnection.close();
 			} catch (Exception e) {
 				e.printStackTrace();

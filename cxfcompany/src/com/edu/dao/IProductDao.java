@@ -9,4 +9,10 @@ public interface IProductDao extends BaseDao<ProductType>{
 	 * @return
 	 */
 	public ProductType getProductTypeByid(Integer id);
+	
+	/**
+	 * 修改库存
+	 * @return
+	 */
+	public boolean updateProductSku(int amount,int id);
 }

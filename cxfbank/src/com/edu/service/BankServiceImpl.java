@@ -18,12 +18,9 @@ public class BankServiceImpl implements IBankService {
 		if(balance<preDepositRequestMessage.getFunds())//如果余额小于申请金额
 			return 2;//余额不足
 		else{
-			boolean updateBalance = balanceDao.UpdateBalance(preDepositRequestMessage.getCustomer().getId(), preDepositRequestMessage.getFunds());
-			if(updateBalance){
-				return 1;//成功
-			}
+			balanceDao.UpdatePreBalance(preDepositRequestMessage.getCustomer().getId(), preDepositRequestMessage.getFunds());
+			return 1;//成功
 		}
-		return 0;
 	}
 
 	@Override

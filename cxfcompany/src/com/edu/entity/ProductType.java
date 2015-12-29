@@ -2,6 +2,11 @@ package com.edu.entity;
 
 public class ProductType {
 	private Integer id;
+	
+	private String name;
+	private String sku;//库存量单位
+	private String manufacture;
+	private Double cost;//价位
 	public Integer getId() {
 		return id;
 	}
@@ -17,10 +22,6 @@ public class ProductType {
 		this.manufacture = manufacture;
 		this.cost = cost;
 	}
-	private String name;
-	private String sku;//库存量单位
-	private String manufacture;
-	private Double cost;//价位
 	public ProductType(String name, String sku, String manufacture, Double cost) {
 		super();
 		this.name = name;

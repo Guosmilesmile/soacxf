@@ -44,6 +44,9 @@ public class SendPreDepositServlet extends HttpServlet {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		request.setCharacterEncoding("UTF-8");
+		response.setCharacterEncoding("UTF-8");
+		response.setContentType("text/html; charset=UTF-8");
 		String id = request.getParameter("id");
 		String salerCreditCardId = request.getParameter("toid");
 		ApplicationContext context = new ClassPathXmlApplicationContext("applicationContext-client.xml");
@@ -55,20 +58,20 @@ public class SendPreDepositServlet extends HttpServlet {
 		preDepositRequestMessage preDepositRequestMessage = new preDepositRequestMessage(customer, myCreditCardId, funds, salerCreditCardId);
 		int bankPreDeposit = -2;
 		bankPreDeposit = bankService.BankPreDeposit(preDepositRequestMessage );
-		if(bankPreDeposit!=-2){
-			PrintWriter writer = response.getWriter();
+		PrintWriter writer = response.getWriter();
+		if(bankPreDeposit==-2){
+			writer.write("连接失败，请重新连接");
+			writer.close();
+		}else{
 			if(bankPreDeposit==2){
 				writer.write("操作失败，余额不足!");
 			}else if(bankPreDeposit==1){
-				writer.write("发送订单成功，请在订单列表中查看订单状态");
+				writer.write("发送预存款成功!");
 			}else{
 				writer.write("操作失败");
 			}
 			writer.close();
-		}else{
-			PrintWriter writer = response.getWriter();
-			writer.write("连接失败，请重新连接");
-			writer.close();
+			
 		}
 	}
 
