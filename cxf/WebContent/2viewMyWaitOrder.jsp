@@ -39,7 +39,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
   function Visible(){
 	var ui =document.getElementById("d1");
 	ui.style.visibility="visible";
-}
+	}
   function getunpayorder(){
 	  $.ajax({
 		  url:'<%=basePath%>GetNoPayOrderServlet',
@@ -62,8 +62,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 			          +"<div id=\"d1\" >"
 			          +"<div class=\"form-txt\">amount:"+data[i].amount+"</div>"
 			          +"<label class=\"name\">"
-			          +"<input type=\"text\">"
-			          +"</label> <a href=\"#\" class=\"btn\">预存款申请</a>"
+			          +"</label> <a href=\"#\" class=\"btn\" id='send"+i+"'>转账申请</a>"
 			          +"<div class=\"clear\"></div>"
 			          +"</div>"
 			          +"</div>"
@@ -72,12 +71,18 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 			          body+=content;
 				  }
 				 $('#list').html(body);
+				 $('.btn').click(function(){
+					 var id = $(this).attr("id");
+					 id = id.substring(4,id.length);
+					 
+				  });
 			  }
 		  }
 	  });
   }
   $(document).ready(function(){
 	  getunpayorder();
+	 
   });
   </script>
 

@@ -60,11 +60,12 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	         //alert(result);
 	         result+="</h2><div>材质：";
 	         result+=d[i].manufacture;
-	         result+="</div><div id=\"1";
+	         result+="</div><div ";
+	         result+="\">价格：<span id=\"1";
 	         result+=i;
-	         result+="\">价格：";
+	         result+="\">";
 	         result+=d[i].cost;
-	         result+="</br>数量：<input type=\"text\" id=\"";
+	         result+="</span></br>数量：<input type=\"text\" id=\"";
 	         result+=i;
 	         result+="\"/>";
 	         result+="</div><a class=\"btn\" onclick=\"requiredOrder(";
@@ -87,15 +88,16 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
    
    function requiredOrder(id){
 	   
-	   
-	 
+	   var id = "#1"+id;
+	   var money  = $(id).html();
+	   alert(money);
 	   $.ajax( {  
 	       url:'<%=basePath%>SendOrderServlet',// 跳转到 action  
 	       data:{
 	    	   id:"1",
 	    	   amount:document.getElementById(id).value,
 	    	   productid:"1",
-	    	   money:document.getElementById("1"+id).value
+	    	   money:money,
 	       },  
 	     type:'post',  
 	      cache:false,  
