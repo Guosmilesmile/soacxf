@@ -29,8 +29,9 @@ public class EchoOrderDaoImpl extends BaseDaoImpl<OrderType> implements EchoOrde
 				String custommerName = resultSet.getString(2) + " " + resultSet.getString(3);
 				String productName = resultSet.getString(4);
 				String productManufacture = resultSet.getString(5);
-				int cost = resultSet.getInt(6) * resultSet.getInt(7);
-				OrderView orderView = new OrderView(orderId, custommerName, productName, productManufacture, cost);
+				int productNum = resultSet.getInt(7);
+				double cost = productNum * resultSet.getInt(6);
+				OrderView orderView = new OrderView(orderId,custommerName,productName,productManufacture,productNum, cost);
 				list.add(orderView);
 			}
 			return list;
