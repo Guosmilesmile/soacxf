@@ -183,7 +183,6 @@
     			isPay:1
     		},
     		success:function(data){
-    			alert(data);
     			var list = eval(data);
     			var html = "";
     			for(var i=0; i<list.length; i++){
@@ -193,9 +192,10 @@
     				html +="<td>"+order.custommerName+"</td>";
     				html +="<td>"+order.productName+"</td>";
     				html +="<td>"+order.productManufacture+"</td>";
+    				html +="<td>"+order.prodectNum+"</td>";
     				html +="<td>"+order.cost+"</td>";
     		    }
-    			$('#orderList').html(html);;
+    			$('#orderList').html(html);
     		}
     	});
     });
