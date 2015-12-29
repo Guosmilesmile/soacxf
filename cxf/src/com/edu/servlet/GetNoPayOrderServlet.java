@@ -45,8 +45,9 @@ public class GetNoPayOrderServlet extends HttpServlet {
 		request.setCharacterEncoding("UTF-8");
 		response.setCharacterEncoding("UTF-8");
 		response.setContentType("text/html; charset=UTF-8");
+		String customerid = request.getParameter("id");
 		ICustomerTypeDao customerTypeDao = new CustomerTypeDaoImpl();
-		List<OrderType> orderTypes = customerTypeDao.getOrderTypes(0);
+		List<OrderType> orderTypes = customerTypeDao.getOrderTypes(0,Integer.parseInt(customerid));
 		PrintWriter writer = response.getWriter();
 		writer.write(FastJsonTool.createJsonString(orderTypes));
 		writer.close();

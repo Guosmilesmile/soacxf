@@ -57,17 +57,18 @@ public class CustomerTypeDaoImpl extends BaseDaoImpl<CustomerType> implements IC
 	}
 
 	@Override
-	public List<OrderType> getOrderTypes(int flag) {
+	public List<OrderType> getOrderTypes(int flag,int customerid) {
 		List<OrderType> list = new ArrayList<OrderType>();
 		Connection openConnection = null ;
 		PreparedStatement prepareStatement = null;
 		ResultSet resultSet  = null;
 		CustomerType customerType = new CustomerType();
 		try {
-			String sql = "select * from o_order where ispay=?";
+			String sql = "select * from o_order where ispay=? and customerid=?";
 			openConnection = DBUtil.openConnection();
 			prepareStatement = openConnection.prepareStatement(sql);
 			prepareStatement.setInt(1, flag);
+			prepareStatement.setInt(2, customerid);
 			resultSet = prepareStatement.executeQuery();
 			while(resultSet.next()){
 				String orderId = resultSet.getString(1);

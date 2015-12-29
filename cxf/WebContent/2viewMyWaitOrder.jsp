@@ -42,11 +42,45 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 }
   function getunpayorder(){
 	  $.ajax({
-		  url:'<%=%>',
-	  })
+		  url:'<%=basePath%>GetNoPayOrderServlet',
+		  data:{id:'1'},
+		  success:function(data){
+			  alert(data);
+			  var data = eval("("+data+")");
+			  var body = "";
+			  if(data.length>0){
+				  for(var i=0;i<data.length;i++){
+					  var productid = data[i].product.id;
+					  var content = "";
+					  content+="<li>"
+			          +"<figure class=\"box-img\"><img src=\"images/page2-img2.jpg \"/></figure>"
+			          +"<div class=\"overflow\">"
+			          +"<h4>name</h4>"
+			          +"<h2>status</h2>"
+			          +"<div> amount: </div> "
+			          +"<div> cost: </div> "
+			          +"<div> sku: </div> "
+			          +"<div> time: </div> "
+			          +"<a href=\"#\" class=\"btn\">接收</a> "
+			          +"<div id=\"d1\" >"
+			          +"<div class=\"form-txt\">amount:</div>"
+			          +"<label class=\"name\">"
+			          +"<input type=\"text\">"
+			          +"</label> <a href=\"#\" class=\"btn\">预存款申请</a>"
+			          +"<div class=\"clear\"></div>"
+			          +"</div>"
+			          +"</div>"
+			          +"<div class=\"clear\"></div>"
+			          +"</li>";
+			          body+=content;
+				  }
+				 
+			  }
+		  }
+	  });
   }
   $(document).ready(function(){
-	 
+	  getunpayorder();
   });
   </script>
 
