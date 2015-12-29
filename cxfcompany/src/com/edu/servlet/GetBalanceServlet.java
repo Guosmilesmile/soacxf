@@ -2,7 +2,6 @@ package com.edu.servlet;
 
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.util.Date;
 import java.util.List;
 
 import javax.servlet.ServletException;
@@ -11,32 +10,22 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import org.springframework.context.ApplicationContext;
-import org.springframework.context.support.ClassPathXmlApplicationContext;
-
 import com.edu.dao.EchoOrderDao;
-import com.edu.dao.ICustomerTypeDao;
-import com.edu.daoimpl.CustomerTypeDaoImpl;
 import com.edu.daoimpl.EchoOrderDaoImpl;
-import com.edu.entity.CustomerType;
-import com.edu.entity.OrderType;
 import com.edu.entity.OrderView;
-import com.edu.entity.ProductType;
-import com.edu.message.newOrderMessage;
-import com.edu.service.ICompanySerivce;
 import com.edu.util.FastJsonTool;
 
 /**
- * Servlet implementation class GetOrderListServlet
+ * Servlet implementation class GetBalance
  */
-@WebServlet("/GetOrderListServlet")
-public class GetOrderListServlet extends HttpServlet {
+@WebServlet("/GetBalanceServlet")
+public class GetBalanceServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public GetOrderListServlet() {
+    public GetBalanceServlet() {
         super();
     }
 
@@ -55,14 +44,12 @@ public class GetOrderListServlet extends HttpServlet {
 		response.setCharacterEncoding("UTF-8");
 		response.setContentType("text/html; charset=UTF-8");
 		//ApplicationContext context = new ClassPathXmlApplicationContext("applicationContext-client.xml");
-		int isPay = Integer.parseInt(request.getParameter("isPay"));
+		int id = Integer.parseInt(request.getParameter("id"));
 		EchoOrderDao orderDao = new EchoOrderDaoImpl();
-		List<OrderView> list = orderDao.getOrderList(isPay);
+		double balance = orderDao.getBalance(id);
 		
 		PrintWriter writer = response.getWriter();
-		String orderList = FastJsonTool.createJsonString(list);
-		writer.write(orderList);
+		writer.write(String.valueOf(balance));
 		writer.close();
 	}
-
 }
