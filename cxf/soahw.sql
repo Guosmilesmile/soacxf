@@ -10,7 +10,7 @@ Target Server Type    : MYSQL
 Target Server Version : 50621
 File Encoding         : 65001
 
-Date: 2015-12-29 23:46:02
+Date: 2015-12-30 05:37:31
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -32,8 +32,8 @@ CREATE TABLE `b_balance` (
 -- ----------------------------
 -- Records of b_balance
 -- ----------------------------
-INSERT INTO `b_balance` VALUES ('1', '1', '20', '0');
-INSERT INTO `b_balance` VALUES ('2', '2', '0', '0');
+INSERT INTO `b_balance` VALUES ('1', '1', '800', '0');
+INSERT INTO `b_balance` VALUES ('2', '2', '200', '0');
 
 -- ----------------------------
 -- Table structure for `c_customer`
@@ -68,17 +68,20 @@ CREATE TABLE `o_order` (
   `productid` int(11) DEFAULT NULL,
   `amount` int(11) DEFAULT NULL,
   `timestamp` date DEFAULT NULL,
-  `toid` int(11) DEFAULT NULL,
+  `ispay` int(11) DEFAULT NULL,
+  `money` double(255,0) DEFAULT NULL,
   PRIMARY KEY (`id`),
   KEY `O_CUSTOMERID` (`customerid`),
   KEY `O_PRODUCTID` (`productid`),
   CONSTRAINT `O_CUSTOMERID` FOREIGN KEY (`customerid`) REFERENCES `c_customer` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
   CONSTRAINT `O_PRODUCTID` FOREIGN KEY (`productid`) REFERENCES `p_product` (`id`) ON DELETE CASCADE ON UPDATE CASCADE
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of o_order
 -- ----------------------------
+INSERT INTO `o_order` VALUES ('6', '1', '1', '10', '2015-12-30', '2', '100');
+INSERT INTO `o_order` VALUES ('7', '1', '1', '10', '2015-12-30', '2', '100');
 
 -- ----------------------------
 -- Table structure for `p_product`
@@ -96,4 +99,5 @@ CREATE TABLE `p_product` (
 -- ----------------------------
 -- Records of p_product
 -- ----------------------------
-INSERT INTO `p_product` VALUES ('1', 'gg', '8', 'ggg', '10');
+INSERT INTO `p_product` VALUES ('1', 'gg', '-10', 'ggg', '10');
+INSERT INTO `p_product` VALUES ('2', 'qq', '20', 'qq', '66');
