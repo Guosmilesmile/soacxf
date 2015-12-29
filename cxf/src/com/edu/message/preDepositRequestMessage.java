@@ -6,10 +6,10 @@ import com.edu.entity.*;
  *
  */
 public class preDepositRequestMessage {
-	private CustomerType customer;
-	private String myCreditCardId;
-	private Double funds;
-	private String salerCreditCardId;
+	private CustomerType customer;//用户
+	private String myCreditCardId;//卡号
+	private Double funds;//申请金额
+	private String salerCreditCardId;//接受者的卡号
 	public preDepositRequestMessage(CustomerType customer,
 			String myCreditCardId, Double funds, String salerCreditCardId) {
 		super();

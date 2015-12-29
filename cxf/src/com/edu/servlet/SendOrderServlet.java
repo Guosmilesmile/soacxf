@@ -12,7 +12,12 @@ import javax.servlet.http.HttpServletResponse;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
-import com.edu.service.IHelloService;
+import com.edu.dao.ICustomerTypeDao;
+import com.edu.daoimpl.CustomerTypeDaoImpl;
+import com.edu.entity.CustomerType;
+import com.edu.entity.OrderType;
+import com.edu.message.newOrderMessage;
+import com.edu.service.ICompanySerivce;
 
 /**
  * Servlet implementation class SendOrderServlet
@@ -26,7 +31,6 @@ public class SendOrderServlet extends HttpServlet {
      */
     public SendOrderServlet() {
         super();
-        // TODO Auto-generated constructor stub
     }
 
 	/**
@@ -40,7 +44,17 @@ public class SendOrderServlet extends HttpServlet {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		
+		String id = request.getParameter("id");
+		ApplicationContext context = new ClassPathXmlApplicationContext("applicationContext-client.xml");
+	    ICompanySerivce companySerivce =   (ICompanySerivce) context.getBean("company");
+		OrderType orderType = new OrderType();
+		ICustomerTypeDao customerTypedao = new CustomerTypeDaoImpl();
+		CustomerType customerType = customerTypedao.getCustomerTypeByid(Integer.parseInt(id));
+		newOrderMessage newOrderMessage = new newOrderMessage(customerType, orderType);
+		companySerivce.placeOrder(newOrderMessage );
+		PrintWriter writer = response.getWriter();
+		writer.write("发送订单成功，请在订单列表中查看订单状态");
+		writer.close();
 	}
 
 }

@@ -8,6 +8,39 @@ import com.edu.entity.CustomerType;
  */
 public class transferFundsMessage {
 	private CustomerType customerType;
+	private CustomerType receiverCustomerType;
+	public Double getFunds() {
+		return funds;
+	}
+
+	public void setFunds(Double funds) {
+		this.funds = funds;
+	}
+
+	public transferFundsMessage(CustomerType customerType,
+			CustomerType receiverCustomerType, Double funds) {
+		super();
+		this.customerType = customerType;
+		this.receiverCustomerType = receiverCustomerType;
+		this.funds = funds;
+	}
+
+	private Double funds;
+
+	public CustomerType getReceiverCustomerType() {
+		return receiverCustomerType;
+	}
+
+	public void setReceiverCustomerType(CustomerType receiverCustomerType) {
+		this.receiverCustomerType = receiverCustomerType;
+	}
+
+	public transferFundsMessage(CustomerType customerType,
+			CustomerType receiverCustomerType) {
+		super();
+		this.customerType = customerType;
+		this.receiverCustomerType = receiverCustomerType;
+	}
 
 	public transferFundsMessage(CustomerType customerType) {
 		super();

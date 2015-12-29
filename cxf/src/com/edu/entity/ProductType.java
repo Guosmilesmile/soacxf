@@ -4,8 +4,8 @@ public class ProductType {
 	private String name;
 	private String sku;//库存量单位
 	private String manufacture;
-	private String cost;
-	public ProductType(String name, String sku, String manufacture, String cost) {
+	private Double cost;//价位
+	public ProductType(String name, String sku, String manufacture, Double cost) {
 		super();
 		this.name = name;
 		this.sku = sku;
@@ -33,10 +33,10 @@ public class ProductType {
 	public void setManufacture(String manufacture) {
 		this.manufacture = manufacture;
 	}
-	public String getCost() {
+	public Double getCost() {
 		return cost;
 	}
-	public void setCost(String cost) {
+	public void setCost(Double cost) {
 		this.cost = cost;
 	}
 }

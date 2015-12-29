@@ -25,4 +25,11 @@
         <property name="serviceClass" value="com.edu.service.IBankService" />
         <property name="address" value="http://localhost:8080/cxfbank/ws/bankService" />
     </bean>
+    
+    <bean id="company" class="com.edu.service.ICompanySerivce" factory-bean="clientFactory" factory-method="create" />
+
+    <bean id="clientFactory2" class="org.apache.cxf.jaxws.JaxWsProxyFactoryBean">
+        <property name="serviceClass" value="com.edu.service.ICompanySerivce" />
+        <property name="address" value="http://localhost:8080/cxcompany/ws/companyService" />
+    </bean>
 </beans>

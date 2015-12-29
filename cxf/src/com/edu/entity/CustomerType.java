@@ -5,6 +5,13 @@ package com.edu.entity;
  *
  */
 public class CustomerType {
+	private Integer id;
+	public Integer getId() {
+		return id;
+	}
+	public void setId(Integer id) {
+		this.id = id;
+	}
 	private String customerId;
 	private String firstname;
 	private String lastname;
@@ -13,10 +20,12 @@ public class CustomerType {
 	private String zipcode;
 	private String country;
 	private String phonenumber;
-	public CustomerType(String customerId, String firstname, String lastname,
-			String street, String city, String zipcode, String country,
-			String phonenumber) {
+	
+	public CustomerType(Integer id, String customerId, String firstname,
+			String lastname, String street, String city, String zipcode,
+			String country, String phonenumber) {
 		super();
+		this.id = id;
 		this.customerId = customerId;
 		this.firstname = firstname;
 		this.lastname = lastname;
