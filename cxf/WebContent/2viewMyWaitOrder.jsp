@@ -45,7 +45,6 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 		  url:'<%=basePath%>GetNoPayOrderServlet',
 		  data:{id:'1'},
 		  success:function(data){
-			  alert(data);
 			  var data = eval("("+data+")");
 			  var body = "";
 			  if(data.length>0){
@@ -60,7 +59,6 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 			          +"<div> amount:"+data[i].amount+" </div> "
 			          +"<div> cost: "+data[i].money+"</div> "
 			          +"<div> time: "+new Date(data[i].timeStamp).toString()+"</div> "
-			          +"<a href=\"#\" class=\"btn\">接收</a> "
 			          +"<div id=\"d1\" >"
 			          +"<div class=\"form-txt\">amount:"+data[i].amount+"</div>"
 			          +"<label class=\"name\">"
@@ -73,7 +71,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 			          +"</li>";
 			          body+=content;
 				  }
-				 $('list').html(body);
+				 $('#list').html(body);
 			  }
 		  }
 	  });
