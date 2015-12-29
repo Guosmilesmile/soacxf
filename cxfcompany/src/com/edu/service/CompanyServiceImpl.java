@@ -36,6 +36,8 @@ public class CompanyServiceImpl implements ICompanySerivce{
 		}
 		return 0;
 	}
+	
+	
 	@Override
 	public int preTransCallback(Integer orderid) {
 		orderDao.UpdateOrder(orderid);

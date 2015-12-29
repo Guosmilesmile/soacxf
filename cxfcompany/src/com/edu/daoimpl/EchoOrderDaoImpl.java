@@ -20,7 +20,7 @@ public class EchoOrderDaoImpl extends BaseDaoImpl<OrderType> implements EchoOrde
 		ResultSet resultSet  = null;
 		List<OrderView> list = new ArrayList<OrderView>();
 		try {
-			String sql = "select o.id, c.firstname,c.lastname, p.name, p.manufacture, p.cost, o.amount from o_order o, p_productor p, and c_customer c where o.customerid = c.id and o.productid = p.id";
+			String sql = "select o.id, c.firstname,c.lastname, p.name, p.manufacture, p.cost, o.amount from o_order o, p_product p, c_customer c where o.customerid = c.id and o.productid = p.id";
 			openConnection = DBUtil.openConnection();
 			prepareStatement = openConnection.prepareStatement(sql);
 			resultSet = prepareStatement.executeQuery();
