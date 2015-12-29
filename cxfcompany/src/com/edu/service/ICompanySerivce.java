@@ -14,11 +14,11 @@ public interface ICompanySerivce {
 	 */
 	public int placeOrder(newOrderMessage newOrderMessage);
 	/**
-	 * 预存款回调操作
+	 * 转账
 	 * @param preDepositSuccessMessage
 	 * @return
 	 */
-	public int preDepositCallback(preDepositSuccessMessage preDepositSuccessMessage);
+	public int preTransCallback(Integer orderid);
 	
 	
 	

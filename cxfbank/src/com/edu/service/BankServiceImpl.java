@@ -2,6 +2,9 @@ package com.edu.service;
 
 import javax.jws.WebService;
 
+import org.springframework.context.ApplicationContext;
+import org.springframework.context.support.ClassPathXmlApplicationContext;
+
 import com.edu.dao.IBalanceDao;
 import com.edu.daoimpl.BalanceDaoImpl;
 import com.edu.message.cancelPreDepositMessage;
@@ -36,6 +39,9 @@ public class BankServiceImpl implements IBankService {
 	@Override
 	public int transferFunds(transferFundsMessage transferFundsMessage) {
 		boolean transferBalance = balanceDao.TransferBalance(transferFundsMessage.getCustomerType().getId(), transferFundsMessage.getReceiverCustomerType().getId(), transferFundsMessage.getFunds());
+		ApplicationContext context = new ClassPathXmlApplicationContext("applicationContext-client.xml");
+	    ICompanySerivce companySerivce =   (ICompanySerivce) context.getBean("company");
+	    companySerivce.preTransCallback(transferFundsMessage.getOrderid());
 		if(transferBalance){
 			return 1;
 		}

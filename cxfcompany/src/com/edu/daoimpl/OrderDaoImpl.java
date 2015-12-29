@@ -45,4 +45,35 @@ public class OrderDaoImpl implements IOrderDao{
 		return false;
 	}
 	
+	@Override
+	public boolean UpdateOrder(Integer id) {
+		Connection openConnection = null ;
+		PreparedStatement prepareStatement = null;
+		try {
+			String sql = "update  o_order set  ispay = 1 where id=?";
+			openConnection = DBUtil.openConnection();
+			openConnection.setAutoCommit(false);
+			prepareStatement = openConnection.prepareStatement(sql);
+			prepareStatement.setInt(1, id);
+			prepareStatement.execute();
+			return true;
+		} catch (Exception e) {
+			try {
+				openConnection.rollback();
+			} catch (SQLException e1) {
+				e1.printStackTrace();
+			}
+			e.printStackTrace();
+		}finally{
+			try {
+				prepareStatement.close();
+				openConnection.commit();
+				openConnection.close();
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+			
+		}
+		return false;
+	}
 }
