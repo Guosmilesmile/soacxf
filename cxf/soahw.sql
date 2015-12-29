@@ -10,7 +10,7 @@ Target Server Type    : MYSQL
 Target Server Version : 50621
 File Encoding         : 65001
 
-Date: 2015-12-29 23:12:08
+Date: 2015-12-29 23:46:02
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -96,3 +96,4 @@ CREATE TABLE `p_product` (
 -- ----------------------------
 -- Records of p_product
 -- ----------------------------
+INSERT INTO `p_product` VALUES ('1', 'gg', '8', 'ggg', '10');
