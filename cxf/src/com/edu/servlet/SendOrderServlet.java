@@ -2,6 +2,7 @@ package com.edu.servlet;
 
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.Date;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -16,6 +17,7 @@ import com.edu.dao.ICustomerTypeDao;
 import com.edu.daoimpl.CustomerTypeDaoImpl;
 import com.edu.entity.CustomerType;
 import com.edu.entity.OrderType;
+import com.edu.entity.ProductType;
 import com.edu.message.newOrderMessage;
 import com.edu.service.ICompanySerivce;
 
@@ -45,11 +47,24 @@ public class SendOrderServlet extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		String id = request.getParameter("id");
+		String amount = request.getParameter("amount");
+		String productid = request.getParameter("productid");
 		ApplicationContext context = new ClassPathXmlApplicationContext("applicationContext-client.xml");
 	    ICompanySerivce companySerivce =   (ICompanySerivce) context.getBean("company");
 		OrderType orderType = new OrderType();
+		
+		
 		ICustomerTypeDao customerTypedao = new CustomerTypeDaoImpl();
 		CustomerType customerType = customerTypedao.getCustomerTypeByid(Integer.parseInt(id));
+		
+		orderType.setCustomer(customerType);
+		orderType.setAmount(Integer.parseInt(amount));
+		orderType.setTimeStamp(new Date());
+		ProductType productType = new ProductType();
+		productType.setId(Integer.parseInt(productid));
+		orderType.setProduct(productType);
+		
+		
 		newOrderMessage newOrderMessage = new newOrderMessage(customerType, orderType);
 		int res = -2;
 		res = companySerivce.placeOrder(newOrderMessage );

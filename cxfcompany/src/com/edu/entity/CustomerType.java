@@ -20,10 +20,12 @@ public class CustomerType {
 	private String zipcode;
 	private String country;
 	private String phonenumber;
-	public CustomerType(String customerId, String firstname, String lastname,
-			String street, String city, String zipcode, String country,
-			String phonenumber) {
+	
+	public CustomerType(Integer id, String customerId, String firstname,
+			String lastname, String street, String city, String zipcode,
+			String country, String phonenumber) {
 		super();
+		this.id = id;
 		this.customerId = customerId;
 		this.firstname = firstname;
 		this.lastname = lastname;
