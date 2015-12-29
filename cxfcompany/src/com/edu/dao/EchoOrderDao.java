@@ -18,4 +18,11 @@ public interface EchoOrderDao extends BaseDao<OrderType>{
 	 * @return
 	 */
 	public double getBalance(int id);
+	
+	/**
+	 * 获取订单价钱
+	 * @param order_id
+	 * @return
+	 */
+	public double getMoney(int order_id);
 }

@@ -78,4 +78,33 @@ public class EchoOrderDaoImpl extends BaseDaoImpl<OrderType> implements EchoOrde
 		return balance;
 	}
 
+	@Override
+	public double getMoney(int order_id) {
+		Connection openConnection = null ;
+		PreparedStatement prepareStatement = null;
+		ResultSet resultSet  = null;
+		double money = 0;
+		try {
+			String sql = "select p.cost, o.amount from o_order o, p_product p where o.productid = p.id and o.id="+order_id;
+			openConnection = DBUtil.openConnection();
+			prepareStatement = openConnection.prepareStatement(sql);
+			resultSet = prepareStatement.executeQuery();
+			while(resultSet.next()){
+				money = resultSet.getInt(1) * resultSet.getDouble(2);
+			}
+			return money;
+		} catch (Exception e) {
+			e.printStackTrace();
+		}finally{
+			try {
+				resultSet.close();
+				prepareStatement.close();
+				openConnection.close();
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+		}
+		return money;
+	}
+
 }
