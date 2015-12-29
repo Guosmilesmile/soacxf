@@ -13,6 +13,23 @@ public class OrderType {
 	private ProductType product;
 	private int amount;
 	private Date timeStamp;
+	private Integer toid;
+	public Integer getToid() {
+		return toid;
+	}
+	public void setToid(Integer toid) {
+		this.toid = toid;
+	}
+	public OrderType(String orderId, CustomerType customer,
+			ProductType product, int amount, Date timeStamp, Integer toid) {
+		super();
+		this.orderId = orderId;
+		this.customer = customer;
+		this.product = product;
+		this.amount = amount;
+		this.timeStamp = timeStamp;
+		this.toid = toid;
+	}
 	public OrderType(String orderId, CustomerType customer,
 			ProductType product, int amount, Date timeStamp) {
 		super();

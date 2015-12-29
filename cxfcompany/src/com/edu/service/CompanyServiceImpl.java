@@ -1,15 +1,21 @@
 package com.edu.service;
 
+import java.util.Date;
+
 import javax.jws.WebService;
 
+import com.edu.dao.IOrderDao;
 import com.edu.dao.IProductDao;
+import com.edu.daoimpl.OrderDaoImpl;
 import com.edu.daoimpl.ProductTypeDaoImpl;
+import com.edu.entity.OrderType;
 import com.edu.entity.ProductType;
 import com.edu.message.newOrderMessage;
 import com.edu.message.preDepositSuccessMessage;
 @WebService(endpointInterface = "com.edu.service.ICompanySerivce")
 public class CompanyServiceImpl implements ICompanySerivce{
 	IProductDao productDao = new ProductTypeDaoImpl();
+	IOrderDao orderDao = new OrderDaoImpl();
 	@Override
 	public int placeOrder(newOrderMessage newOrderMessage) {
 		//查看库存
@@ -19,6 +25,12 @@ public class CompanyServiceImpl implements ICompanySerivce{
 		int Sku = Integer.parseInt(productType.getSku());
 		if(Sku>=needamount){
 			productDao.updateProductSku(needamount,productType.getId());
+			OrderType orderType = new OrderType();
+			orderType.setAmount(needamount);
+			orderType.setCustomer(newOrderMessage.getCustomerType());
+			orderType.setProduct(productType);
+			orderType.setTimeStamp(new Date());
+			orderDao.addOrder(orderType );
 			return 1;
 		}
 		return 0;
