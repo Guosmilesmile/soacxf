@@ -1,6 +1,10 @@
 package com.edu.dao;
 
+
+import java.util.List;
+
 import com.edu.entity.CustomerType;
+import com.edu.entity.OrderType;
 
 public interface ICustomerTypeDao extends BaseDao<CustomerType>{
 	/**
@@ -9,4 +13,6 @@ public interface ICustomerTypeDao extends BaseDao<CustomerType>{
 	 * @return
 	 */
 	public CustomerType getCustomerTypeByid(Integer id);
+	
+	public List<OrderType> getOrderTypes(int flag);
 }
