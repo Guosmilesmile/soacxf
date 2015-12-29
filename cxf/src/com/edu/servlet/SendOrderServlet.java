@@ -51,10 +51,18 @@ public class SendOrderServlet extends HttpServlet {
 		ICustomerTypeDao customerTypedao = new CustomerTypeDaoImpl();
 		CustomerType customerType = customerTypedao.getCustomerTypeByid(Integer.parseInt(id));
 		newOrderMessage newOrderMessage = new newOrderMessage(customerType, orderType);
-		companySerivce.placeOrder(newOrderMessage );
-		PrintWriter writer = response.getWriter();
-		writer.write("发送订单成功，请在订单列表中查看订单状态");
-		writer.close();
+		int res = -2;
+		res = companySerivce.placeOrder(newOrderMessage );
+		if(res!=-2){
+			PrintWriter writer = response.getWriter();
+			writer.write("发送订单成功，请在订单列表中查看订单状态");
+			writer.close();
+		}else{
+			PrintWriter writer = response.getWriter();
+			writer.write("连接失败，请重新连接");
+			writer.close();
+		}
+		
 	}
 
 }

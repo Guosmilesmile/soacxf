@@ -10,10 +10,8 @@ import org.junit.Test;
 
 public class CustomerDaoImplTest {
 	
-	private static CustomerDaoImpl customerDaoImpl;
 	@BeforeClass
 	public static void setUpBeforeClass() throws Exception {
-		customerDaoImpl = new CustomerDaoImpl();
 	}
 
 	@AfterClass
@@ -30,7 +28,6 @@ public class CustomerDaoImplTest {
 
 	@Test
 	public void test() {
-		customerDaoImpl.testget();
 	}
 
 }
