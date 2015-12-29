@@ -16,13 +16,14 @@ public class OrderDaoImpl implements IOrderDao{
 		Connection openConnection = null ;
 		PreparedStatement prepareStatement = null;
 		try {
-			String sql = "insert into o_order (customerid,produtid,amount,timestamp,toid) value (?,?,?,now())";
+			String sql = "insert into o_order (customerid,productid,amount,timestamp,ispay,money) value (?,?,?,now(),0,?)";
 			openConnection = DBUtil.openConnection();
 			openConnection.setAutoCommit(false);
 			prepareStatement = openConnection.prepareStatement(sql);
 			prepareStatement.setInt(1, orderType.getCustomer().getId());
 			prepareStatement.setInt(2, orderType.getProduct().getId());
 			prepareStatement.setInt(3, orderType.getAmount());
+			prepareStatement.setDouble(4, orderType.getMoney());
 			prepareStatement.execute();
 			return true;
 		} catch (Exception e) {

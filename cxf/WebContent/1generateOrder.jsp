@@ -84,13 +84,13 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	       data:{
 	    	   id:"1",
 	    	   amount:"1",
-	    	   productid:"1"
-
+	    	   productid:"1",
+	    	   money:"1",
 	       },  
 	     type:'post',  
 	      cache:false,  
 	     success:function(data) {  
-
+			alert(data);
 	      },  
 	      error : function() {  
 	           // view("异常！");  
