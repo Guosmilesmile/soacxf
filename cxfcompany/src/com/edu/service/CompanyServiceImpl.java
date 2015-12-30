@@ -30,19 +30,21 @@ public class CompanyServiceImpl implements ICompanySerivce{
 			orderType.setCustomer(newOrderMessage.getCustomerType());
 			orderType.setProduct(productType);
 			orderType.setTimeStamp(new Date());
+			orderType.setIspay(0);
 			orderDao.addOrder(orderType );
 			return 1;
 		}
 		return 0;
 	}
-
+	
+	
 	@Override
-	public int preDepositCallback(
-			preDepositSuccessMessage preDepositSuccessMessage) {
-		// TODO Auto-generated method stub
-		return 0;
+	public int preTransCallback(Integer orderid) {
+		orderDao.UpdateOrder(orderid);
+		return 1;
 	}
 
+	
 	
 
 }

@@ -9,4 +9,11 @@ public interface IOrderDao {
 	 * @return
 	 */
 	public boolean addOrder(OrderType orderType);
+
+	/**
+	 * 修改订单状态
+	 * @param id
+	 * @return
+	 */
+	public boolean UpdateOrder(Integer id);
 }

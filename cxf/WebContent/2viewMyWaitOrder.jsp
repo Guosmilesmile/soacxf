@@ -1,4 +1,10 @@
-﻿<!DOCTYPE html>
+﻿<%@ page language="java" import="java.util.*" pageEncoding="utf-8"%>
+<%
+String path = request.getContextPath();
+String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.getServerPort()+path+"/";
+%>
+
+<!DOCTYPE html>
 <html lang="en">
 <head>
 <title>Courses</title>
@@ -31,9 +37,17 @@
 	<![endif]-->
   <script>
   function Visible(){
-var ui =document.getElementById("d1");
-ui.style.visibility="visible";
+	var ui =document.getElementById("d1");
+	ui.style.visibility="visible";
 }
+  function getunpayorder(){
+	  $.ajax({
+		  url:'<%=%>',
+	  })
+  }
+  $(document).ready(function(){
+	 
+  });
   </script>
 
 </head>

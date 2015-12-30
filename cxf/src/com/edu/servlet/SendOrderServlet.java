@@ -52,6 +52,7 @@ public class SendOrderServlet extends HttpServlet {
 		String id = request.getParameter("id");
 		String amount = request.getParameter("amount");
 		String productid = request.getParameter("productid");
+		String money = request.getParameter("money");
 		ApplicationContext context = new ClassPathXmlApplicationContext("applicationContext-client.xml");
 	    ICompanySerivce companySerivce =   (ICompanySerivce) context.getBean("company");
 		OrderType orderType = new OrderType();
@@ -63,10 +64,11 @@ public class SendOrderServlet extends HttpServlet {
 		orderType.setCustomer(customerType);
 		orderType.setAmount(Integer.parseInt(amount));
 		orderType.setTimeStamp(new Date());
+		orderType.setIspay(0);
 		ProductType productType = new ProductType();
 		productType.setId(Integer.parseInt(productid));
 		orderType.setProduct(productType);
-		
+		orderType.setMoney(Double.parseDouble(money));
 		
 		newOrderMessage newOrderMessage = new newOrderMessage(customerType, orderType);
 		int res = -2;
