@@ -52,16 +52,19 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	    	
 	    	for(i=0;i<d.length;i++){ 
 		     result+="<li><figure class=\"box-img\"><img src=\"images/page2-img2.jpg\"/></figure>";
-	         result+="<div class=\"overflow\"><h4>";
+	         result+="<div class=\"overflow\"><h4>商品名：";
 	         result+=d[i].name;
 	        // alert(result);
-	         result+="</h4><h2>";
+	         result+="</h4><h2>库存：";
 	         result+=d[i].sku;
 	         //alert(result);
-	         result+="</h2><div>";
+	         result+="</h2><div>材质：";
 	         result+=d[i].manufacture;
-	         result+="</div><div>";
+	         result+="</div><div id=\" ";
+	         result+=i;
+	         result+="\">价格：";
 	         result+=d[i].cost;
+	         result+="</br>数量：<input type=\"text\" id=\"amount\">";
 	         result+="</div><a class=\"btn\" onclick=\"requiredOrder()\">订单申请</a></div><div class=\"clear\"></div></li>";
 	         
 	    	}
@@ -83,9 +86,9 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	       url:'<%=basePath%>SendOrderServlet',// 跳转到 action  
 	       data:{
 	    	   id:"1",
-	    	   amount:"1",
+	    	   amount:document.getElementById(amount).value,
 	    	   productid:"1",
-	    	   money:"1",
+	    	   money:document.getElementById(i).value
 	       },  
 	     type:'post',  
 	      cache:false,  
