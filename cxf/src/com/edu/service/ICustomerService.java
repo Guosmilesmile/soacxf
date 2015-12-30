@@ -1,8 +1,11 @@
 package com.edu.service;
 
+import java.util.List;
+
 import javax.jws.WebService;
 
 import com.edu.entity.OrderType;
+import com.edu.entity.ProductType;
 import com.edu.message.OrderAcceptedMessage;
 import com.edu.message.OrderCancelledMessage;
 import com.edu.message.transferFundsMessage;
@@ -29,4 +32,8 @@ public interface ICustomerService {
 	 * @return
 	 */
 	public int CustomerTransferCompleteCallback(transferFundsMessage transferFundsMessage );
+	/**
+	 * 获取所有的商品
+	 */
+	public List<ProductType> getAllProduct();
 }

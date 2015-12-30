@@ -1,4 +1,11 @@
-﻿<!DOCTYPE html>
+﻿<%@ page language="java" import="java.util.*" pageEncoding="utf-8"%>
+<%
+String path = request.getContextPath();
+String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.getServerPort()+path+"/";
+%>
+
+
+<!DOCTYPE html>
 <html lang="en">
 <head>
 <title>Courses</title>
@@ -30,10 +37,69 @@
        <link href='http://fonts.googleapis.com/css?family=PT+Serif+Caption:400' rel='stylesheet' type='text/css'>
 	<![endif]-->
   <script>
-  function Visible(){
-var ui =document.getElementById("d1");
-ui.style.visibility="visible";
-}
+   window.onload=function(){
+	   $.ajax( {  
+	       url:'<%=basePath%>GetProductServlet',// 跳转到 action  
+	       data:{  },  
+	     type:'post',  
+	      cache:false,  
+	     success:function(data) {  
+	    	 var d = eval("("+data+")");
+	    	var result="";
+	    	var i=0;
+			
+	    	//alert(d[0].name);
+	    	
+	    	for(i=0;i<d.length;i++){ 
+		     result+="<li><figure class=\"box-img\"><img src=\"images/page2-img2.jpg\"/></figure>";
+	         result+="<div class=\"overflow\"><h4>";
+	         result+=d[i].name;
+	        // alert(result);
+	         result+="</h4><h2>";
+	         result+=d[i].sku;
+	         //alert(result);
+	         result+="</h2><div>";
+	         result+=d[i].manufacture;
+	         result+="</div><div>";
+	         result+=d[i].cost;
+	         result+="</div><a class=\"btn\" onclick=\"requiredOrder()\">订单申请</a></div><div class=\"clear\"></div></li>";
+	         
+	    	}
+	    	//alert(result);
+	    	document.getElementById("content").innerHTML=result;
+	    	 
+
+	      },  
+	      error : function() {  
+	           // view("异常！");  
+	           alert("异常！");  
+	       }  
+	 });
+   }
+   
+   
+   function requiredOrder(){
+	   $.ajax( {  
+	       url:'<%=basePath%>SendOrderServlet',// 跳转到 action  
+	       data:{
+	    	   id:"1",
+	    	   amount:"1",
+	    	   productid:"1"
+
+	       },  
+	     type:'post',  
+	      cache:false,  
+	     success:function(data) {  
+
+	      },  
+	      error : function() {  
+	           // view("异常！");  
+	           alert("异常！");  
+	       }  
+	 });
+	   
+   }
+   
   </script>
 
 </head>
@@ -77,23 +143,7 @@ ui.style.visibility="visible";
       </div>
       <ul class="list-teachers">
 
-        <li>
-          <figure class="box-img"><img src="images/page2-img2.jpg " alt="" /></figure>
-          <div class="overflow">
-            <h4>name</h4>
-             <h2>sku</h2>
-            <div>manufacture </div> 
-            <div> cost: </div> 
-            <a href="#" class="btn">订单申请</a> 
-        
-
-
-          </div>
-          <div class="clear"></div>
-        </li>
-
-
-
+<div id="content"></div>
 
 
        

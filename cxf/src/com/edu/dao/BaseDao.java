@@ -1,5 +1,6 @@
 package com.edu.dao;
 
+import java.util.List;
 import java.util.Map;
 
 public interface BaseDao<T> {
@@ -81,6 +82,6 @@ public interface BaseDao<T> {
 	 *            查询条件的字段
 	 * @return list<类>
 	 */
-	// public List<T> findAll(String tablename,
-	// int start, int end, String sort,String order, Map params1, Map params2);
+	 //public List<T> findAll(String tablename,
+	 //int start, int end, String sort,String order, Map params1, Map params2);
 }
