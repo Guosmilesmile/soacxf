@@ -1,18 +1,18 @@
-﻿<!DOCTYPE html>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+<!DOCTYPE html>
 <html lang="en">
   <head>
     <meta charset="utf-8">
-    <title>已接订单</title>
+    <title>已付款订单</title>
     <meta content="IE=edge,chrome=1" http-equiv="X-UA-Compatible">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="">
     <meta name="author" content="">
 
     <link rel="stylesheet" type="text/css" href="lib/bootstrap/css/bootstrap.css">
-    
     <link rel="stylesheet" type="text/css" href="stylesheets/theme.css">
     <link rel="stylesheet" href="lib/font-awesome/css/font-awesome.css">
-
     <script src="lib/jquery-1.7.2.min.js" type="text/javascript"></script>
 
     <!-- Demo page code -->
@@ -60,7 +60,7 @@
         <div class="navbar-inner">
                 <ul class="nav pull-right">
                     
-                    <li><a href="#" class="hidden-phone visible-tablet visible-desktop" role="button">设置</a></li>
+                    <li><a class="hidden-phone visible-tablet visible-desktop" onClick=balance()>查看账户余额</a></li>
                     <li id="fat-menu" class="dropdown">
                         <a href="#" role="button" class="dropdown-toggle" data-toggle="dropdown">
                             <i class="icon-user"></i>Admin
@@ -85,23 +85,27 @@
             <input type="text" placeholder="搜索......">
         </form>
 
-               <a href="#dashboard-menu" class="nav-header" data-toggle="collapse"><i class="icon-user"></i>订单管理</a>
+        <a href="#dashboard-menu" class="nav-header" data-toggle="collapse"><i class="icon-user"></i>订单管理</a>
         <ul id="dashboard-menu" class="nav nav-list collapse in">
-            <li><a href="users.html">接收订单</a></li>
-            <li ><a href="artists.html">已接订单</a></li>
-            <li ><a href="artists-check.html">转账情况</a></li>
+            <li><a href="/cxfcompany/payingOrder.jsp">未付款订单</a></li>
+            <li ><a href="/cxfcompany/payedOrder.jsp">已付款订单</a></li>
         </ul>
+
+
     </div>
+    
+
+    
     <div class="content">
         
         <div class="header">
             
-            <h1 class="page-title">已接订单</h1>
+            <h1 class="page-title">已付款订单</h1>
         </div>
         
                 <ul class="breadcrumb">
             <li><a href="index.html">主页</a> <span class="divider">/</span></li>
-            <li class="active">我的接单</li>
+            <li class="active">已付款订单</li>
         </ul>
 
         <div class="container-fluid">
@@ -115,42 +119,18 @@
     <table class="table">
       <thead>
         <tr>
+          <th style="width: 10%;">订单ID</th>
           <th style="width: 12%;">用户名</th>
           <th style="width: 10%;">产品名</th>
-          <th style="width: 10%;">数量</th>
           <th style="width: 15%;">材质</th>
+          <th style="width: 10%;">数量</th>
           <th style="width: 10%;">费用</th>
-          <th style="width: 10%;">操作</th>
         </tr>
       </thead>
-      <tbody>
-        <tr>
-
-
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-
-          <td>
-              <a href="#"><i class="icon-ok"></i></a>
-              <a href="#myModal" role="button" data-toggle="modal"><i class="icon-remove"></i></a>
-          </td>
-        </tr>
-        
+      <tbody id="orderList">
+    
       </tbody>
     </table>
-</div>
-<div class="pagination">
-    <ul>
-        <li><a href="#"><<</a></li>
-        <li><a href="#">1</a></li>
-        <li><a href="#">2</a></li>
-        <li><a href="#">3</a></li>
-        <li><a href="#">4</a></li>
-        <li><a href="#">>></a></li>
-    </ul>
 </div>
 
 <div class="modal small hide fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
@@ -183,10 +163,42 @@
 
     <script src="lib/bootstrap/js/bootstrap.js"></script>
     <script type="text/javascript">
-        $("[rel=tooltip]").tooltip();
-        $(function() {
-            $('.demo-cancel-click').click(function(){return false;});
-        });
+    function balance(){
+    	$.ajax({
+    		url:'/cxfcompany/GetBalanceServlet',
+    		type:'POST',
+    		data:{
+    			id:2
+    		},
+    		success:function(data){
+    			alert("您的账户余额为"+data);
+    		}
+    	});
+    }
+    $(document).ready(function(){
+    	 $.ajax({
+    		url:'/cxfcompany/GetOrderListServlet',
+    		type:'POST',
+    		data:{
+    			isPay:1
+    		},
+    		success:function(data){
+    			var list = eval(data);
+    			var html = "";
+    			for(var i=0; i<list.length; i++){
+    				var order = list[i];
+    				html +="<tr>";
+    				html +="<td>"+order.orderId+"</td>";
+    				html +="<td>"+order.custommerName+"</td>";
+    				html +="<td>"+order.productName+"</td>";
+    				html +="<td>"+order.productManufacture+"</td>";
+    				html +="<td>"+order.productNum+"</td>";
+    				html +="<td>"+order.cost+"</td>";
+    		    }
+    			$('#orderList').html(html);
+    		}
+    	});
+    });
     </script>
     
   </body>

@@ -55,9 +55,9 @@ public class GetOrderListServlet extends HttpServlet {
 		response.setCharacterEncoding("UTF-8");
 		response.setContentType("text/html; charset=UTF-8");
 		//ApplicationContext context = new ClassPathXmlApplicationContext("applicationContext-client.xml");
-		
+		int isPay = Integer.parseInt(request.getParameter("isPay"));
 		EchoOrderDao orderDao = new EchoOrderDaoImpl();
-		List<OrderView> list = orderDao.getOrderList();
+		List<OrderView> list = orderDao.getOrderList(isPay);
 		
 		PrintWriter writer = response.getWriter();
 		String orderList = FastJsonTool.createJsonString(list);

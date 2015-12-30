@@ -14,5 +14,5 @@ public interface ICustomerTypeDao extends BaseDao<CustomerType>{
 	 */
 	public CustomerType getCustomerTypeByid(Integer id);
 	
-	public List<OrderType> getOrderTypes(int flag);
+	public List<OrderType> getOrderTypes(int flag,int customerid);
 }

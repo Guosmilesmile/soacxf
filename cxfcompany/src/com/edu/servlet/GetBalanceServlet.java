@@ -10,24 +10,22 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import com.edu.dao.ICustomerTypeDao;
-import com.edu.daoimpl.CustomerTypeDaoImpl;
-import com.edu.entity.CustomerType;
-import com.edu.entity.OrderType;
-import com.edu.service.CustomerServiceImpl;
+import com.edu.dao.EchoOrderDao;
+import com.edu.daoimpl.EchoOrderDaoImpl;
+import com.edu.entity.OrderView;
 import com.edu.util.FastJsonTool;
 
 /**
- * Servlet implementation class GetNoPayOrderServlet
+ * Servlet implementation class GetBalance
  */
-@WebServlet("/GetNoPayOrderServlet")
-public class GetNoPayOrderServlet extends HttpServlet {
+@WebServlet("/GetBalanceServlet")
+public class GetBalanceServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public GetNoPayOrderServlet() {
+    public GetBalanceServlet() {
         super();
     }
 
@@ -45,12 +43,13 @@ public class GetNoPayOrderServlet extends HttpServlet {
 		request.setCharacterEncoding("UTF-8");
 		response.setCharacterEncoding("UTF-8");
 		response.setContentType("text/html; charset=UTF-8");
-		String customerid = request.getParameter("id");
-		ICustomerTypeDao customerTypeDao = new CustomerTypeDaoImpl();
-		List<OrderType> orderTypes = customerTypeDao.getOrderTypes(0,Integer.parseInt(customerid));
+		//ApplicationContext context = new ClassPathXmlApplicationContext("applicationContext-client.xml");
+		int id = Integer.parseInt(request.getParameter("id"));
+		EchoOrderDao orderDao = new EchoOrderDaoImpl();
+		double balance = orderDao.getBalance(id);
+		
 		PrintWriter writer = response.getWriter();
-		writer.write(FastJsonTool.createJsonString(orderTypes));
+		writer.write(String.valueOf(balance));
 		writer.close();
 	}
-
 }
