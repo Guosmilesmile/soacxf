@@ -56,7 +56,7 @@ public class EchoOrderDaoImpl extends BaseDaoImpl<OrderType> implements EchoOrde
 		ResultSet resultSet  = null;
 		double balance = 0;
 		try {
-			String sql = "select balance from b_blance b where b.id = "+id;
+			String sql = "select balance from b_balance b where b.id = "+id;
 			openConnection = DBUtil.openConnection();
 			prepareStatement = openConnection.prepareStatement(sql);
 			resultSet = prepareStatement.executeQuery();

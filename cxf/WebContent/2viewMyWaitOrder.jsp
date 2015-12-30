@@ -45,7 +45,6 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 		  url:'<%=basePath%>GetNoPayOrderServlet',
 		  data:{id:'1'},
 		  success:function(data){
-			  alert(data);
 			  var data = eval("("+data+")");
 			  var body = "";
 			  if(data.length>0){
@@ -57,13 +56,11 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 			          +"<div class=\"overflow\">"
 			          +"<h4>name</h4>"
 			          +"<h2>status</h2>"
-			          +"<div> amount: </div> "
-			          +"<div> cost: </div> "
-			          +"<div> sku: </div> "
-			          +"<div> time: </div> "
-			          +"<a href=\"#\" class=\"btn\">接收</a> "
+			          +"<div> amount:"+data[i].amount+" </div> "
+			          +"<div> cost: "+data[i].money+"</div> "
+			          +"<div> time: "+new Date(data[i].timeStamp).toString()+"</div> "
 			          +"<div id=\"d1\" >"
-			          +"<div class=\"form-txt\">amount:</div>"
+			          +"<div class=\"form-txt\">amount:"+data[i].amount+"</div>"
 			          +"<label class=\"name\">"
 			          +"<input type=\"text\">"
 			          +"</label> <a href=\"#\" class=\"btn\">预存款申请</a>"
@@ -74,7 +71,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 			          +"</li>";
 			          body+=content;
 				  }
-				 
+				 $('#list').html(body);
 			  }
 		  }
 	  });
@@ -120,9 +117,9 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 
 
       <div class="padd-1">
-        <h3>我的待审核订单</h3>
+        <h3>我的未付款订单</h3>
       </div>
-      <ul class="list-teachers">
+      <ul class="list-teachers" id='list'>
 
         <li>
           <figure class="box-img"><img src="images/page2-img2.jpg " alt="" /></figure>

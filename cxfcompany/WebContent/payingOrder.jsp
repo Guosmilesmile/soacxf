@@ -122,8 +122,8 @@
           <th style="width: 10%;">订单ID</th>
           <th style="width: 12%;">用户名</th>
           <th style="width: 10%;">产品名</th>
-          <th style="width: 10%;">数量</th>
           <th style="width: 15%;">材质</th>
+          <th style="width: 10%;">数量</th>
           <th style="width: 10%;">费用</th>
         </tr>
       </thead>
@@ -202,7 +202,7 @@
         				html +="<td>"+order.custommerName+"</td>";
         				html +="<td>"+order.productName+"</td>";
         				html +="<td>"+order.productManufacture+"</td>";
-        				html +="<td>"+order.prodectNum+"</td>";
+        				html +="<td>"+order.productNum+"</td>";
         				html +="<td>"+order.cost+"</td>";
         		    }
         			$('#orderList').html(html);
