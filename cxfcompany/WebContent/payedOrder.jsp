@@ -4,7 +4,7 @@
 <html lang="en">
   <head>
     <meta charset="utf-8">
-    <title>已付款订单</title>
+    <title>未转账订单</title>
     <meta content="IE=edge,chrome=1" http-equiv="X-UA-Compatible">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="">
@@ -87,8 +87,9 @@
 
         <a href="#dashboard-menu" class="nav-header" data-toggle="collapse"><i class="icon-user"></i>订单管理</a>
         <ul id="dashboard-menu" class="nav nav-list collapse in">
-            <li><a href="/cxfcompany/payingOrder.jsp">未付款订单</a></li>
-            <li ><a href="/cxfcompany/payedOrder.jsp">已付款订单</a></li>
+            <li><a href="/cxfcompany/payingOrder.jsp">未预付款订单</a></li>
+            <li ><a href="/cxfcompany/payedOrder.jsp">未转帐订单</a></li>
+            <li ><a href="/cxfcompany/FinishedOrder.jsp">已转帐订单</a></li>
         </ul>
 
 
@@ -100,12 +101,12 @@
         
         <div class="header">
             
-            <h1 class="page-title">已付款订单</h1>
+            <h1 class="page-title">未转账订单</h1>
         </div>
         
                 <ul class="breadcrumb">
             <li><a href="index.html">主页</a> <span class="divider">/</span></li>
-            <li class="active">已付款订单</li>
+            <li class="active">未转账订单</li>
         </ul>
 
         <div class="container-fluid">

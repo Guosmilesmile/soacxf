@@ -4,7 +4,7 @@
 <html lang="en">
   <head>
     <meta charset="utf-8">
-    <title>未预付款订单</title>
+    <title>已转帐订单</title>
     <meta content="IE=edge,chrome=1" http-equiv="X-UA-Compatible">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="">
@@ -85,9 +85,9 @@
             <input type="text" placeholder="搜索......">
         </form>
 
-         <a href="#dashboard-menu" class="nav-header" data-toggle="collapse"><i class="icon-user"></i>订单管理</a>
+        <a href="#dashboard-menu" class="nav-header" data-toggle="collapse"><i class="icon-user"></i>订单管理</a>
         <ul id="dashboard-menu" class="nav nav-list collapse in">
-           <li><a href="/cxfcompany/payingOrder.jsp">未预付款订单</a></li>
+            <li><a href="/cxfcompany/payingOrder.jsp">未预付款订单</a></li>
             <li ><a href="/cxfcompany/payedOrder.jsp">未转帐订单</a></li>
             <li ><a href="/cxfcompany/FinishedOrder.jsp">已转帐订单</a></li>
         </ul>
@@ -101,12 +101,12 @@
         
         <div class="header">
             
-            <h1 class="page-title">未预付款订单</h1>
+            <h1 class="page-title">已转帐订单</h1>
         </div>
         
                 <ul class="breadcrumb">
             <li><a href="index.html">主页</a> <span class="divider">/</span></li>
-            <li class="active">未预付款订单</li>
+            <li class="active">已转帐订单</li>
         </ul>
 
         <div class="container-fluid">
@@ -132,16 +132,6 @@
     
       </tbody>
     </table>
-</div>
-<div class="pagination">
-    <ul>
-        <li><a href="#"><<</a></li>
-        <li><a href="#">1</a></li>
-        <li><a href="#">2</a></li>
-        <li><a href="#">3</a></li>
-        <li><a href="#">4</a></li>
-        <li><a href="#">>></a></li>
-    </ul>
 </div>
 
 <div class="modal small hide fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
@@ -186,31 +176,32 @@
     		}
     	});
     }
-        $(document).ready(function(){
-        	$.ajax({
-        		url:'/cxfcompany/GetOrderListServlet',
-        		type:'POST',
-        		data:{
-        			isPay:0
-        		},
-        		success:function(data){
-        			var list = eval(data);
-        			var html = "";
-        			for(var i=0; i<list.length; i++){
-        				var order = list[i];
-        				html +="<tr>";
-        				html +="<td>"+order.orderId+"</td>";
-        				html +="<td>"+order.custommerName+"</td>";
-        				html +="<td>"+order.productName+"</td>";
-        				html +="<td>"+order.productManufacture+"</td>";
-        				html +="<td>"+order.productNum+"</td>";
-        				html +="<td>"+order.cost+"</td>";
-        		    }
-        			$('#orderList').html(html);
-        		}
-        	});
-        });
+    $(document).ready(function(){
+    	 $.ajax({
+    		url:'/cxfcompany/GetOrderListServlet',
+    		type:'POST',
+    		data:{
+    			isPay:2
+    		},
+    		success:function(data){
+    			var list = eval(data);
+    			var html = "";
+    			for(var i=0; i<list.length; i++){
+    				var order = list[i];
+    				html +="<tr>";
+    				html +="<td>"+order.orderId+"</td>";
+    				html +="<td>"+order.custommerName+"</td>";
+    				html +="<td>"+order.productName+"</td>";
+    				html +="<td>"+order.productManufacture+"</td>";
+    				html +="<td>"+order.productNum+"</td>";
+    				html +="<td>"+order.cost+"</td>";
+    		    }
+    			$('#orderList').html(html);
+    		}
+    	});
+    });
     </script>
+    
   </body>
 </html>
 
