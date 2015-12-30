@@ -88,16 +88,20 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
    
    function requiredOrder(id){
 	   
-	   var id = "#1"+id;
-	   var money  = $(id).html();
-	   alert(money);
+	   var id1 = "#1"+id;
+	   var money  = $(id1).html();
+	   var myamount=document.getElementById(id).value;
+	   //alert(money);
+	  // alert(amount);
+	   var sum=money*myamount;
+	   //alert(money);
 	   $.ajax( {  
 	       url:'<%=basePath%>SendOrderServlet',// 跳转到 action  
 	       data:{
 	    	   id:"1",
-	    	   amount:document.getElementById(id).value,
+	    	   amount:myamount,
 	    	   productid:"1",
-	    	   money:money,
+	    	   money:sum
 	       },  
 	     type:'post',  
 	      cache:false,  
