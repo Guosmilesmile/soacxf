@@ -59,7 +59,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 			          +"<div> amount:"+data[i].amount+" </div> "
 			          +"<div> cost: "+data[i].money+"</div> "
 			          +"<div> time: "+new Date(data[i].timeStamp).toString()+"</div> "
-			          + "<a href=\"#\" class=\"btn\">接收</a><a href=\"#\" class=\"btn\">转账</a> </div>";
+			          +"</div>"
 			          +"<div class=\"clear\"></div>"
 			          +"</li>";
 			          body+=content;
@@ -86,16 +86,9 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
       <h1><a href="index.html"><img alt="" src=""></a></h1>
       <nav>
         <ul class="sf-menu">
-          <li><a  href="index.html">发起订单</a></li>
-          <li class="active"><a href="index-1.html">待审核订单</a> </li>
-          <li><a href="index-2.html">制作中订单</a>
-            <ul>
-              <li><a href="#">dolores et</a></li>
-              <li><a href="#">lorem ipsum dolo </a>
-              <li><a href="#">sanctus est</a></li>
-            </ul>
-          </li>
-          <li><a href="index-3.html">退出</a> </li>
+          <li><a  href="/cfx/1generateOrder.jsp">发起订单</a></li>
+          <li ><a href="/cfx/2viewMyWaitOrder.jsp">未付款订单</a> </li>
+          <li class="active"><a href="/cfx/4viewMyOngoingOrder.jsp">已付款订单</a></li>
          
         </ul>
       </nav>
@@ -111,7 +104,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 
 
       <div class="padd-1">
-        <h3>我的制作中订单</h3>
+        <h3>我的已付款订单</h3>
       </div>
       <ul class="list-teachers" id="list">
 
