@@ -13,7 +13,10 @@
      -->
     
 
-    <!-- <jaxws:endpoint id="helloService" implementor="com.edu.service.HelloServiceImpl" address="/helloService" />  -->
-    <jaxws:endpoint id="companyService" implementor="com.edu.service.CompanyServiceImpl" address="/companyService" />
-    <!-- <jaxws:endpoint id="custoemrService" implementor="com.edu.service.CustomerServiceImpl" address="/customerService" /> -->
+    <bean id="client" class="com.edu.service.IHelloService" factory-bean="clientFactory" factory-method="create" />
+
+    <bean id="clientFactory" class="org.apache.cxf.jaxws.JaxWsProxyFactoryBean">
+        <property name="serviceClass" value="com.edu.service.IHelloService" />
+        <property name="address" value="http://localhost:8080/cxf/ws/helloService" />
+    </bean>
 </beans>

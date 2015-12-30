@@ -46,6 +46,9 @@ public class SendOrderServlet extends HttpServlet {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		request.setCharacterEncoding("UTF-8");
+		response.setCharacterEncoding("UTF-8");
+		response.setContentType("text/html; charset=UTF-8");
 		String id = request.getParameter("id");
 		String amount = request.getParameter("amount");
 		String productid = request.getParameter("productid");
@@ -68,14 +71,20 @@ public class SendOrderServlet extends HttpServlet {
 		newOrderMessage newOrderMessage = new newOrderMessage(customerType, orderType);
 		int res = -2;
 		res = companySerivce.placeOrder(newOrderMessage );
-		if(res!=-2){
-			PrintWriter writer = response.getWriter();
-			writer.write("发送订单成功，请在订单列表中查看订单状态");
-			writer.close();
-		}else{
-			PrintWriter writer = response.getWriter();
+		PrintWriter writer = response.getWriter();
+		if(res==-2){
 			writer.write("连接失败，请重新连接");
 			writer.close();
+		}else{
+			if(res==1){
+				writer.write("发送订单成功!");
+			}else if(res==0){
+				writer.write("库存不足，订单被拒绝");
+			}else{
+				writer.write("操作失败");
+			}
+			writer.close();
+			
 		}
 		
 	}

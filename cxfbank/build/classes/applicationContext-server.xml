@@ -12,8 +12,5 @@
         http://cxf.apache.org/jaxws http://cxf.apache.org/schemas/jaxws.xsd"
      -->
     
-
-    <!-- <jaxws:endpoint id="helloService" implementor="com.edu.service.HelloServiceImpl" address="/helloService" />  -->
-    <jaxws:endpoint id="companyService" implementor="com.edu.service.CompanyServiceImpl" address="/companyService" />
-    <!-- <jaxws:endpoint id="custoemrService" implementor="com.edu.service.CustomerServiceImpl" address="/customerService" /> -->
+	<jaxws:endpoint id="bankService" implementor="com.edu.service.BankServiceImpl" address="/bankService" />
 </beans>
